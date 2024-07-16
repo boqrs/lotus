@@ -8,8 +8,6 @@
 #define defaultYear 1900
 #define defaultMonth 1
 
-
-
 Timestamp::Timestamp():microSecondsSinceEpoch_(0){};
 
 Timestamp::Timestamp(int microSecondsSinceEpoch):microSecondsSinceEpoch_(microSecondsSinceEpoch) {};
