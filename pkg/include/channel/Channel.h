@@ -43,7 +43,6 @@ public:
     void disableWriting() { events_ &= ~kWriteEvent; update(); }
     void disableAll() { events_ = kNoEvent; update(); }
 
-
 private:
     void update();
     void handleEventWithGuard(Timestamp receiveTime);
