@@ -117,10 +117,12 @@ void EpollPoller::fillActiveChannels(int numEvents, Poller::ChannelList *activeC
 
 void EpollPoller::update(int operation, Channel *channel) {
     epoll_event event;
-    ::memset(&event, 0, sizeof(event))
+    ::memset(&event, 0, sizeof(event));
+
+    int fd = channel->fd();
 
     event.events = channel->events();
-    event.data.fd = channel->fd();
+    event.data.fd = fd;
     event.data.ptr = channel;
 
     if (::epoll_ctl(epollfd_, operation, fd, &event) < 0){
