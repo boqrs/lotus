@@ -14,8 +14,8 @@ class EventLoop;
 
 class Channel: Noncopyable{
 public:
-    using  EventCallback = std::function<void>;
-    using  ReadEventCallback = std::function<Timestamp>;
+    using  EventCallback = std::function<void()>;
+    using  ReadEventCallback = std::function<void(Timestamp)>;
 
     Channel(EventLoop* loop, int fd);
     ~Channel();
