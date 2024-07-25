@@ -15,11 +15,9 @@ public:
     static const size_t kInitialSize = 1024; //body len
 
     explicit Buffer(size_t initSize=kInitialSize)
-    :buffer_(kCheapPrepend+initSize),
-    readIndex_(kCheapPrepend),
-    writeIndex_(kCheapPrepend){
-
-    }
+    :buffer_(kCheapPrepend+initSize)
+    ,readIndex_(kCheapPrepend)
+    ,writerIndex_(kCheapPrepend){}
 
     size_t prependableBytes(){return readIndex_;} //已经读取的数据
     size_t readableBytes(){return writeIndex_-readIndex_;};
@@ -78,7 +76,7 @@ private:
             readIndex_=kCheapPrepend;
             writeIndex_=readIndex_+dataLen;
         }
-    };
+    }
 
     std::vector<char> buffer_;
     size_t readIndex_;
