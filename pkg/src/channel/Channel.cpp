@@ -3,15 +3,12 @@
 //
 #include <sys/epoll.h>
 
-
 #include "../../include/channel/Channel.h"
 #include "../../include/event/EventLoop.h"
 #include "../../include/utils/Logger.h"
 
+#define invalidChannelIndex -1
 
-
-
-#define invalidChannelIndex -1;
 const int Channel::kNoEvent = 0;
 const int Channel::kReadEvent = EPOLLIN | EPOLLPRI;;
 const int Channel::kWriteEvent = EPOLLOUT;
@@ -22,7 +19,7 @@ Channel::Channel(EventLoop *loop, int fd)
 fd_(fd),
 index_(invalidChannelIndex),
 events_(0),
-rEvents_(0),
+revents_(0),
 tied_(false),{};
 
 ~Channel::~Channel(){};

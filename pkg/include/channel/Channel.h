@@ -31,7 +31,7 @@ public:
 
     int fd(){return fd_;};
     int events()const{return events_;};
-    void set_revents(int rent){rEvents_ = rent;};
+    void set_revents(int rent){revents_ = rent;};
     void remove();
     EventLoop* ownerLoop(){return loop_;};
     int index(){return index_;};
@@ -55,7 +55,7 @@ private:
     const int fd_; //这里本质上就是客户端
 
     int events_; //这是注册的时候绑定的事件
-    int rEvents_;  //上报的事件类型
+    int revents_;  //上报的事件类型
     int index_;
 
     std::weak_ptr<void> tie_;
