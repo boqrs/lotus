@@ -34,7 +34,7 @@ EventLoop* EventLoopThread::startLoop(){
         }
         loop = loop_; //执行到这一步的时候loop_已经被赋值了
     }
-    return loopl;
+    return loop;
 }
 
 void EventLoopThread::threadFunc() {
