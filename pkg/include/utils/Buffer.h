@@ -34,7 +34,7 @@ public:
 
     void retrieveAll(){
         readIndex_ = kCheapPrepend;
-        writeIndex_ = kCheapPrepend;
+        writerIndex_ = kCheapPrepend;
     }
 
     std::string retrieveAsString(size_t len){
