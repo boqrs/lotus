@@ -21,7 +21,7 @@ void EventLoopThreadPool::start(const EventLoopThreadPool::ThreadInitCallback &c
         char buf[name_.size() + 32]; //numThread_ may be int32, actually threadnum max = 150 is better
         snprintf(buf, sizeof buf, "%s%d", name_.c_str(), i);
         EventLoopThread *et = new EventLoopThread(cb, buf);//能不能用make_unique_ptr
-        threads_.push_back(std::unique_ptr<EventLoopThread>(t));
+        threads_.push_back(std::unique_ptr<EventLoopThread>(et));
         loops_.push_back(t->startLoop());
     }
 

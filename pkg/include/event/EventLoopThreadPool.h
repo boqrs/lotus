@@ -16,7 +16,7 @@ class EventLoopThread;
 class EventLoopThreadPool{
 public:
     using ThreadInitCallback = std::function<void(EventLoop *)>;
-    EventLoopThreadPool(EventLoop* baseLoop, const std::string nameArg&);
+    EventLoopThreadPool(EventLoop* baseLoop, const std::string& nameArg);
     ~EventLoopThreadPool();
 
     void setThreadNum(int num){numThread_ = num;};
