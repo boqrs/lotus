@@ -8,9 +8,9 @@
 
 std::atomic_int Thread::numCreated_(0);
 
-Thread::Thread(Thread::ThreadFunc, const std::string &name)
-:func_(std::move(ThreadFunc) ),
-started_(false),
+Thread::Thread(ThreadFunc func, const std::string &name)
+:func_(std::move(func))
+,started_(false),
 joined_(false),
 tid_(0),
 name_(name){
@@ -46,7 +46,7 @@ void Thread::join() {
 void Thread::setDefaultName() {
     int num = ++numCreated_;
     if (name_.empty()){
-        char[30] buf={0};
+        char buf[32]={0};
         snprintf(buf, sizeof(buf), "ThreadNum: %d", num);
         name_ = buf;
     }
