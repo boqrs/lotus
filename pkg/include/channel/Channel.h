@@ -35,13 +35,17 @@ public:
     void remove();
     EventLoop* ownerLoop(){return loop_;};
     int index(){return index_;};
-    void setIndex(int idx){index_ = idx; };
+    void set_index(int idx){index_ = idx; };
 
     void enableReading(){events_ |= kReadEvent; update();};
     void disableReading(){events_ &= ~kReadEvent; update();};
     void enableWriting() { events_ |= kWriteEvent; update(); }
     void disableWriting() { events_ &= ~kWriteEvent; update(); }
     void disableAll() { events_ = kNoEvent; update(); }
+
+    bool isNoneEvent() const { return events_ == kNoneEvent; }
+    bool isWriting() const { return events_ & kWriteEvent; }
+    bool isReading() const { return events_ & kReadEvent; }
 
 private:
     void update();
