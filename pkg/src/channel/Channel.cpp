@@ -9,7 +9,7 @@
 
 #define invalidChannelIndex -1
 
-const int Channel::kNoEvent = 0;
+const int Channel::kNoneEvent = 0;
 const int Channel::kReadEvent = EPOLLIN | EPOLLPRI;;
 const int Channel::kWriteEvent = EPOLLOUT;
 

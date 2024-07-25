@@ -41,7 +41,7 @@ public:
     void disableReading(){events_ &= ~kReadEvent; update();};
     void enableWriting() { events_ |= kWriteEvent; update(); }
     void disableWriting() { events_ &= ~kWriteEvent; update(); }
-    void disableAll() { events_ = kNoEvent; update(); }
+    void disableAll() { events_ = kNoneEvent; update(); }
 
     bool isNoneEvent() const { return events_ == kNoneEvent; }
     bool isWriting() const { return events_ & kWriteEvent; }
@@ -51,7 +51,7 @@ private:
     void update();
     void handleEventWithGuard(Timestamp receiveTime);
 
-    static  const int kNoEvent;
+    static  const int kNoneEvent;
     static  const int kReadEvent;
     static  const int kWriteEvent;
 
