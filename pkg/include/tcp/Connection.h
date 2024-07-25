@@ -54,7 +54,8 @@ public:
     void setHighWaterMarkCallback(const HighWaterMarkCallback& cb, size_t highWaterMark){
         highWaterMarkCallback_ = cb; highWaterMark_ = highWaterMark;
     };
-
+    void connectEstablished();
+    void connectDestroyed();
 private:
     enum StatE{
         kDisconnected,
