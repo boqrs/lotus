@@ -30,7 +30,7 @@ TcpServer::TcpServer(EventLoop *loop, const InetAddress &listenAddr, const std::
                      ,messageCallback_()
                      ,nextConnId_(1)
                      ,started_(0){
-    acceptor_->setNewConnectionCallback(std::bind(&TcpServer::newConnection, this,std::placeholders::1, std::placeholders::2));
+    acceptor_->setNewConnectionCallback(std::bind(&TcpServer::newConnection, this, std::placeholders::_1, std::placeholders::_2));
 }
 
 TcpServer::~TcpServer() {

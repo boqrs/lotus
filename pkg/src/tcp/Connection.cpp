@@ -36,7 +36,7 @@ TcpConnection::TcpConnection(EventLoop *loop, const std::string &nameArg, int so
                              , localAddr_(localAddr)
                              , peerAddr_(peerAddr)
                              , highWaterMark_(64*1024*1024){
-    channel_->setReadCallback(std::bind(&TcpConnection::handleRead, this, std::placeholders::1)); //一个占位符,原因是readcallback有一个参数
+    channel_->setReadCallback(std::bind(&TcpConnection::handleRead, this, std::placeholders::_1)); //一个占位符,原因是readcallback有一个参数
     channel_->setWriteCallback(std::bind(&TcpConnection::handleWrite, this));
     channel_->setCloseCallback(std::bind(&TcpConnection::handleClose, this));
     channel_->setErrorCallback(std::bind(&TcpConnection::handleError, this));
