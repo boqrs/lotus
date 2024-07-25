@@ -15,7 +15,7 @@ public:
 
     std::string toIp()const;
     std::string toIpPort()const;
-    std::string toPort()const;
+    uint16_t toPort()const;
 
     const sockaddr_in* getSockAddr(){return &addr_;};
     void setSockAddr(const sockaddr_in &addr){addr_ = addr;};

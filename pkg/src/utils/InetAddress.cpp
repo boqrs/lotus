@@ -3,7 +3,6 @@
 //
 
 #include <cstring>
-#include <arpa/inet.h>
 #include "../../include/utils/InetAddress.h"
 
 InetAddress::InetAddress(uint16_t port, std::string ip) {
@@ -29,6 +28,6 @@ std::string InetAddress::toIpPort() const {
     return buf;
 }
 
-std::string InetAddress::toPort() const {
+uint16_t InetAddress::toPort() const {
     return ::ntohs(addr_.sin_port);
 }
