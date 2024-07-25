@@ -5,7 +5,7 @@
 #include "../../include/event/EventLoopThread.h"
 #include "../../include/event/EventLoopThreadPool.h"
 
-EventLoopThreadPool::EventLoopThreadPool(EventLoop *baseLoop, const std::string nameArg):
+EventLoopThreadPool::EventLoopThreadPool(EventLoop *baseLoop, const std::string& nameArg):
 baseLoop_(baseLoop),
 name_(nameArg),
 started_(false),
@@ -22,7 +22,7 @@ void EventLoopThreadPool::start(const EventLoopThreadPool::ThreadInitCallback &c
         snprintf(buf, sizeof buf, "%s%d", name_.c_str(), i);
         EventLoopThread *et = new EventLoopThread(cb, buf);//能不能用make_unique_ptr
         threads_.push_back(std::unique_ptr<EventLoopThread>(et));
-        loops_.push_back(t->startLoop());
+        loops_.push_back(et->startLoop());
     }
 
     if (numThread_==0 && cb){
