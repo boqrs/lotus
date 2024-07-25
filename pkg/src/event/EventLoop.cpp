@@ -98,7 +98,7 @@ void EventLoop::queueInLoop(EventLoop::Functor cb) {
 }
 
 //loop的主函数中poll会让线程进入阻塞状态, 通过wakeup将本线程唤醒,继续执行～～～
-bool EventLoop::handleRead() {
+void EventLoop::handleRead() {
     uint64_t one = 1;
     ssize_t n = read(wakeupFd_, &one, sizeof(one));
     if (n != sizeof(one))
@@ -125,7 +125,7 @@ void EventLoop::removeChannel(Channel *channel) {
     poller_->removeChannel(channel);
 }
 
-void EventLoop::hasChannel(Channel *channel) {
+bool EventLoop::hasChannel(Channel *channel) {
     return poller_->hasChannel(channel);
 }
 
@@ -133,7 +133,7 @@ void EventLoop::doPendingFunctors(){
     std::vector<Functor> functors;
     callingPendingFunctors_ = true;
     {
-        std::unique_lock<std::mutex> lock(&mutex_);
+        std::unique_lock<std::mutex> lock(mutex_);
         functors.swap(pendingFunctors_);
     }
 
