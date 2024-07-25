@@ -78,7 +78,7 @@ private:
             readIndex_=kCheapPrepend;
             writeIndex_=readIndex_+dataLen;
         }
-    }
+    };
 
     std::vector<char> buffer_;
     size_t readIndex_;
