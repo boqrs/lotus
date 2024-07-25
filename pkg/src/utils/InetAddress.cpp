@@ -3,6 +3,7 @@
 //
 
 #include <cstring>
+#include <arpa/inet.h>
 #include "../../include/utils/InetAddress.h"
 
 InetAddress::InetAddress(uint16_t port, std::string ip) {

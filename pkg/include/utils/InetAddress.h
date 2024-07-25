@@ -24,8 +24,4 @@ private:
 
 };
 
-
-
-
-
 #endif //LOTUS_INETADDRESS_H
