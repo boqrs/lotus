@@ -71,7 +71,7 @@ private:
         } else{
             //如果len长度小于可写空间
             //复制write-read的内容到kCheapPrepend之后,writeIndex=kCheapPrepend+write-read readIndex=kCheapPrepend;
-            size_t dataLen = readableBytes;
+            size_t dataLen = readableBytes();
             std::copy(buffer_.begin()+readIndex_, buffer_.begin()+writerIndex_, buffer_.begin()+kCheapPrepend);
             readIndex_=kCheapPrepend;
             writerIndex_=readIndex_+dataLen;
