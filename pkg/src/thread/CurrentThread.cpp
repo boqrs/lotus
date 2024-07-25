@@ -1,6 +1,9 @@
 //
 // Created by wave on 2024/7/15.
 //
+
+#include "../../include/thread/CurrentThread.h"
+
 namespace CurrentThread{
     __thread int t_cachedTid=0; //
 
