@@ -1,9 +1,8 @@
 //
 // Created by wave on 2024/7/16.
 //
-#include "../../include/thread/Thread.h"
 #include "../../include/event/EventLoopThread.h"
-
+#include "../../include/event/EventLoop.h"
 
 EventLoopThread::EventLoopThread(const EventLoopThread::ThreadInitCallback &cb,
                                  const std::string &name):
