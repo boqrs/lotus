@@ -50,7 +50,7 @@ private:
     using ConnectionMap = std::unordered_map<std::string, TcpConnectionPtr>;
 
     EventLoop* loop_; //baseLoop
-    const std::string port_;
+    const std::string ipPort_;
     const std::string name_;
 
     std::unique_ptr<Acceptor> acceptor_;

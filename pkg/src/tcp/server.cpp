@@ -64,12 +64,14 @@ void TcpServer::newConnection(int socketfd, const InetAddress &peerAddr) {
     LOG_INFO("TcpServer::newConnection [%s] - new connection [%s] from %s\n",
              name_.c_str(), connName.c_str(), peerAddr.toIpPort().c_str());
 
-    if(::getsockname(sockfd, (sockaddr *)&local, &addrlen) < 0)
+    sockaddr_in local;
+    ::memset(&local, 0, sizeof(local));
+    socklen_t addrlen = sizeof(local);
+    if(::getsockname(socketfd, (sockaddr *)&local, &addrlen) < 0)
     {
         LOG_ERROR("sockets::getLocalAddr");
     }
-    Inet
-    Address localAddr(local);
+    InetAddress localAddr(local);
     TcpConnectionPtr conn(new TcpConnection(ioLoop,
                                             connName,
                                             sockfd,
