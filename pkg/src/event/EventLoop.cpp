@@ -32,10 +32,10 @@ callingPendingFunctors_(false),
 threadId_(CurrentThread::tid()),
 poller_(Poller::newDefaultPoller(this)),
 wakeupFd_(createEventFd()),
-wakeupChannel_(new Channel(this, wakeupFd_)),
+wakeupChannel_(new Channel(this, wakeupFd_))
 {
     if(t_threadInThisLoop){
-        LOG_FATAL("Another EventLoop %p exists in this thread %d\n", t_loopInThisThread, threadId_);
+        LOG_FATAL("Another EventLoop %p exists in this thread %d\n", t_threadInThisLoop, threadId_);
     }else{
         t_threadInThisLoop = this;
     }
@@ -58,7 +58,7 @@ void EventLoop::loop() {
     quit_ = false;
 
     while (!quit_){
-        activeChannels_->clear();
+        activeChannels_.clear();
         pollReturnTime_ = poller_->poll(kPollTimeMs, &activeChannels_);
         for(Channel* channel: activeChannels_){
             channel->handleEvent(pollReturnTime_);
@@ -87,7 +87,7 @@ void EventLoop::runInLoop(EventLoop::Functor cb) {
 
 void EventLoop::queueInLoop(EventLoop::Functor cb) {
     {
-        std::unique_lock<std::mutex> lock(&mutex_);
+        std::unique_lock<std::mutex> lock(mutex_);
         pendingFunctors_.emplace_back(cb);
     }
 
