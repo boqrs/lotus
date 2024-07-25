@@ -25,7 +25,7 @@ public:
     size_t readableBytes(){return writeIndex_-readIndex_;};
     size_t writeableBytes(){return buffer_.size()-writeIndex_;}
 
-    const char* peek()const{return buffer_.begin()+readIndex_;};
+    const char* peek()const{return begin()+readIndex_;};
     void retrieve(size_t len)    {
         if (len<readableBytes()){
             readIndex_+=len;
@@ -65,7 +65,7 @@ public:
 private:
 
     char* begin(){return &*buffer_.begin();};
-    const char* begin(){return &*buffer_.begin();};
+    const char* begin()const{return &*buffer_.begin();};
 
     void makeSpace(size_t len){
         if (writeableBytes()+readableBytes()< len+kCheapPrepend){
@@ -82,6 +82,6 @@ private:
 
     std::vector<char> buffer_;
     size_t readIndex_;
-    size_t writeIndex_;
+    size_t writerIndex_;
 };
 #endif //LOTUS_BUFFER_H
