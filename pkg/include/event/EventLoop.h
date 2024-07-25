@@ -15,6 +15,9 @@
 #include "../utils/Timestamp.h"
 #include "../thread/CurrentThread.h"
 
+class Channel;
+class Poller;
+
 class EventLoop: Noncopyable{
 public:
     using Functor = std::function<void()>;
