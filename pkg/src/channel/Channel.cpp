@@ -20,9 +20,9 @@ fd_(fd),
 index_(invalidChannelIndex),
 events_(0),
 revents_(0),
-tied_(false),{};
+tied_(false){};
 
-~Channel::~Channel(){};
+Channel::~Channel(){};
 
 void  Channel::tie(const std::shared_ptr<void> & obj) {
     tie_ = obj; //这里链接的ptr会转化成为一个weak ptr,在channel生命周期内一直持有这个weak_ptr保证了,
