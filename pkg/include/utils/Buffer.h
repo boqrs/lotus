@@ -20,8 +20,8 @@ public:
     ,writerIndex_(kCheapPrepend){}
 
     size_t prependableBytes(){return readIndex_;} //已经读取的数据
-    size_t readableBytes(){return writeIndex_-readIndex_;};
-    size_t writeableBytes(){return buffer_.size()-writeIndex_;}
+    size_t readableBytes(){return writerIndex_-readIndex_;};
+    size_t writeableBytes(){return buffer_.size()-writerIndex_;}
 
     const char* peek()const{return begin()+readIndex_;};
     void retrieve(size_t len)    {
@@ -67,14 +67,14 @@ private:
 
     void makeSpace(size_t len){
         if (writeableBytes()+readableBytes()< len+kCheapPrepend){
-            buffer_.resize(writeIndex_+len); //扩容len长度的空间
+            buffer_.resize(writerIndex_+len); //扩容len长度的空间
         } else{
             //如果len长度小于可写空间
             //复制write-read的内容到kCheapPrepend之后,writeIndex=kCheapPrepend+write-read readIndex=kCheapPrepend;
             size_t dataLen = readableBytes;
-            std::copy(buffer_.begin()+readIndex_, buffer_.begin()+writeIndex_, buffer_.begin()+kCheapPrepend);
+            std::copy(buffer_.begin()+readIndex_, buffer_.begin()+writerIndex_, buffer_.begin()+kCheapPrepend);
             readIndex_=kCheapPrepend;
-            writeIndex_=readIndex_+dataLen;
+            writerIndex_=readIndex_+dataLen;
         }
     }
 
