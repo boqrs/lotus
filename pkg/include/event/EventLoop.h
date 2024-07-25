@@ -4,6 +4,12 @@
 
 #ifndef LOTUS_EVENTLOOP_H
 #define LOTUS_EVENTLOOP_H
+#include <functional>
+#include <vector>
+#include <atomic>
+#include <memory>
+#include <mutex>
+
 #include "../channel/Channel.h"
 #include "../utils/Noncopyable.h"
 #include "../utils/Timestamp.h"
