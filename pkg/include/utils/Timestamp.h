@@ -4,6 +4,8 @@
 
 #ifndef LOTUS_TIMESTAMP_H
 #define LOTUS_TIMESTAMP_H
+#include <iostream>
+#include <string>
 class Timestamp {
 public:
     Timestamp();
