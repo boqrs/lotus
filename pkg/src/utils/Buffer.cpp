@@ -17,7 +17,7 @@ ssize_t Buffer::readFd(int fd, int *saveErrno) {
     */
 
     struct iovec vec[2];
-    const size_t writable = writableBytes();
+    const size_t writable = writeableBytes();
 
     vec[0].iov_base = begin() + writerIndex_;
     vec[0].iov_len = writable;
