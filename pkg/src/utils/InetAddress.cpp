@@ -9,7 +9,7 @@
 
 #include "../../include/utils/InetAddress.h"
 #include "../../include/utils/Logger.h"
-#include "../../include/utils/Acceptor.h.h"
+#include "../../include/utils/Acceptor.h"
 
 InetAddress::InetAddress(uint16_t port, std::string ip) {
     ::memset(&addr_, 0, sizeof(addr_));
