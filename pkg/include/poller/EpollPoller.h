@@ -14,8 +14,8 @@ class Channel;
 
 class EpollPoller: public Poller{
 public:
-    EPollPoller(EventLoop *loop);
-    ~EPollPoller() override;
+    EpollPoller(EventLoop *loop);
+    ~EpollPoller() override;
 
     Timestamp poll(int timeoutMs, ChannelList *activeChannels) override;
     void updateChannel(Channel *channel) override;
