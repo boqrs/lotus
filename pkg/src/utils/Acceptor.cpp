@@ -29,7 +29,7 @@ listenning_(false)
     acceptorSocket_.setReusePort(true);
     acceptorSocket_.setReuseAddr(true);
     acceptorSocket_.bindAddress(listenAddr);
-    acceptorChannel_.setReadCallback(std::move(&Acceptor::handleRead, this));
+    acceptorChannel_.setReadCallback(std::bind(&Acceptor::handleRead, this));
 }
 
 Acceptor::~Acceptor() {
@@ -48,7 +48,7 @@ void Acceptor::handleRead() {
     int confd = acceptorSocket_.accept(&peerAddress);
     if (confd >=0){
         if (NewConnectionCallback_){
-            NewConnectionCallback_(connfd, peerAddress);
+            NewConnectionCallback_(confd, peerAddress);
         } else{
             LOG_ERROR("%s:%s:%d  connection callback not register error\n", __FILE__, __FUNCTION__, __LINE__);
             ::close(confd);
