@@ -22,7 +22,7 @@ static EventLoop *CheckLoopNotNull(EventLoop *loop)
 TcpServer::TcpServer(EventLoop *loop, const InetAddress &listenAddr, const std::string &nameArg,
                      TcpServer::Option option)
                      :loop_(CheckLoopNotNull(loop))
-                     ,port_(listenAddr.toIpPort())
+                     ,ipPort_(listenAddr.toIpPort())
                      ,name_(nameArg)
                      ,acceptor_(new Acceptor(loop, listenAddr, option==kReusePort))
                      ,threadPool_(new EventLoopThreadPool(loop, nameArg))
@@ -74,7 +74,7 @@ void TcpServer::newConnection(int socketfd, const InetAddress &peerAddr) {
     InetAddress localAddr(local);
     TcpConnectionPtr conn(new TcpConnection(ioLoop,
                                             connName,
-                                            sockfd,
+                                            socketfd,
                                             localAddr,
                                             peerAddr));
     connections_[connName] = conn;
@@ -99,9 +99,9 @@ void TcpServer::removeConnection(const TcpConnectionPtr &conn)
 void TcpServer::removeConnectionInLoop(const TcpConnectionPtr &conn)
 {
     LOG_INFO("TcpServer::removeConnectionInLoop [%s] - connection %s\n",
-             name_.c_str(), conn->name().c_str());
+             name_.c_str(), conn->getName().c_str());
 
-    connections_.erase(conn->name());
+    connections_.erase(conn->getName());
     EventLoop *ioLoop = conn->getLoop();
     ioLoop->queueInLoop(
             std::bind(&TcpConnection::connectDestroyed, conn));
