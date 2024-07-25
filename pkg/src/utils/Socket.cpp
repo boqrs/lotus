@@ -19,7 +19,6 @@ Socket::~Socket() {
     ::close(sockfd_);
 }
 
-
 void Socket::bindAddress(const InetAddress &localaddr)
 {
     if (0 != ::bind(sockfd_, (sockaddr *)localaddr.getSockAddr(), sizeof(sockaddr_in)))
