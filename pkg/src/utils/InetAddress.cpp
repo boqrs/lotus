@@ -2,14 +2,13 @@
 // Created by wave on 2024/7/16.
 //
 
-#include <strings.h>
-
+#include <cstring>
 #include "../../include/utils/InetAddress.h"
 
 InetAddress::InetAddress(uint16_t port, std::string ip) {
     ::memset(&addr_, 0, sizeof(addr_));
     addr_.sin_family = AF_INET;
-    addr_.sin_port = ::htons(port); // 本地字节序转为网络字节序
+    addr_.sin_port = ::htons(port);
     addr_.sin_addr.s_addr = ::inet_addr(ip.c_str());
 }
 
