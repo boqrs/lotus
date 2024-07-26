@@ -30,7 +30,7 @@ public:
 
 
     Timestamp pollReturnTime()const{return pollReturnTime_;};
-    void runInLoop(Functor cb); //TODO: 这两个有问题吧
+    void runInLoop(Functor cb);
     void queueInLoop(Functor cb);
 
     void wakeup();
@@ -43,7 +43,7 @@ public:
 private:
     void handleRead();
     void doPendingFunctors();
-    using ChannelList = std::vector<Channel*>; //缓存的是当前epoll中的所有通道
+    using ChannelList = std::vector<Channel*>;
 
     std::atomic_bool  looping_;
     std::atomic_bool  quit_;
@@ -53,7 +53,7 @@ private:
     std::unique_ptr<Poller> poller_;
 
     int wakeupFd_;
-    std::unique_ptr<Channel> wakeupChannel_; //具体的类型不需要写指针
+    std::unique_ptr<Channel> wakeupChannel_;
 
     ChannelList activeChannels_;
     std::atomic_bool callingPendingFunctors_;
