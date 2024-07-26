@@ -10,7 +10,7 @@
 
 Timestamp::Timestamp():microSecondsSinceEpoch_(0){};
 
-Timestamp::Timestamp(int microSecondsSinceEpoch):microSecondsSinceEpoch_(microSecondsSinceEpoch) {};
+Timestamp::Timestamp(int64_t microSecondsSinceEpoch):microSecondsSinceEpoch_(microSecondsSinceEpoch) {};
 
 
 Timestamp Timestamp::now() {
@@ -20,7 +20,7 @@ Timestamp Timestamp::now() {
 std::string Timestamp::toString() const {
     char buf[defaultBufferLen];
     tm* nowTime = localtime(microSecondsSinceEpoch_);
-    snprintf(buff, defaultBufferLen, "%4d/%02d/%02d %02d::%02d::%02d",
+    snprintf(buf, defaultBufferLen, "%4d/%02d/%02d %02d::%02d::%02d",
              nowTime->tm_year+defaultYear,
              nowTime->tm_mon+defaultMonth,
              nowTime->tm_mday,
