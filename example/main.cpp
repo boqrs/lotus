@@ -34,11 +34,11 @@ private:
     {
         if (conn->connected())
         {
-            LOG_INFO("Connection UP : %s", conn->peerAddress().toIpPort().c_str());
+            LOG_INFO("Connection UP : %s", conn->getPeer().toIpPort().c_str());
         }
         else
         {
-            LOG_INFO("Connection DOWN : %s", conn->peerAddress().toIpPort().c_str());
+            LOG_INFO("Connection DOWN : %s", conn->getPeer().toIpPort().c_str());
         }
     }
 
