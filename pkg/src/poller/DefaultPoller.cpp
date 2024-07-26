@@ -11,8 +11,5 @@ Poller *Poller::newDefaultPoller(EventLoop *loop)
     {
         return nullptr; // 生成poll的实例
     }
-    else
-    {
-        return new EPollPoller(loop); // 生成epoll的实例
-    }
+    return new EpollPoller(loop);
 }
