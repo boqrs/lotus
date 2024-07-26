@@ -19,7 +19,7 @@ Timestamp Timestamp::now() {
 
 std::string Timestamp::toString() const {
     char buf[defaultBufferLen];
-    tm* nowTime = localtime(microSecondsSinceEpoch_);
+    tm* nowTime = localtime(&microSecondsSinceEpoch_);
     snprintf(buf, defaultBufferLen, "%4d/%02d/%02d %02d::%02d::%02d",
              nowTime->tm_year+defaultYear,
              nowTime->tm_mon+defaultMonth,
