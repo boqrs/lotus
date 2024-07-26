@@ -44,6 +44,7 @@ wakeupChannel_(new Channel(this, wakeupFd_))
     wakeupChannel_->setReadCallback(
             std::bind(&EventLoop::handleRead, this));
     wakeupChannel_->enableReading();
+    std::cout<<"finish here~~~"<<std::endl;
 };
 
 EventLoop::~EventLoop() {
