@@ -21,7 +21,7 @@ public:
     virtual void updateChannel(Channel* channel) = 0;
     virtual void removeChannel(Channel* channel) = 0;
 
-    bool hasChannel(Channel* channel);
+    bool hasChannel(Channel* channel)const;
 
     static Poller* newDefaultPoller(EventLoop* loop);
 
