@@ -4,7 +4,8 @@
 #include "../../include/utils/Timestamp.h"
 #include "../../include/utils/Logger.h"
 
-Logger &Logger::instance() {
+Logger &Logger::instance()
+{
     static Logger logger;
     return logger;
 }
@@ -14,19 +15,19 @@ void Logger::setLogLevel(int level) {
 }
 
 void Logger::log(std::string msg) {
-    std::string pre= "";
+    std::string pre = "";
     switch (logLevel_) {
         case INFO:
-            pre = "INFO";
+            pre = "INFO: ";
             break;
         case ERROR:
-            pre = "ERROR";
+            pre = "ERROR: ";
             break;
         case DEBUG:
-            pre = "DEBUG";
+            pre = "DEBUG: ";
             break;
         case FATAL:
-            pre = "FATAL";
+            pre = "FATAL: ";
             break;
     }
 

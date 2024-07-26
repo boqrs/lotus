@@ -65,7 +65,7 @@ Timestamp EpollPoller::poll(int timeoutMs, Poller::ChannelList *activeChannels) 
 
 void EpollPoller::updateChannel(Channel *channel) {
     const int index = channel->index(); //这里用一个状态标志位是不是更加合适一些
-   // LOG_INFO("func=%s => fd=%d events=%d index=%d\n", __FUNCTION__, channel->fd(), channel->events(), index);
+    LOG_INFO("func=%s => fd=%d events=%d index=%d\n", __FUNCTION__, channel->fd(), channel->events(), index);
 
     if (index == kNew || index == kDeleted) //TODO：为什么把kDeleted也要放在这里
     {
