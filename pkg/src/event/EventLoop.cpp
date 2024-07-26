@@ -34,7 +34,7 @@ poller_(Poller::newDefaultPoller(this)),
 wakeupFd_(createEventFd()),
 wakeupChannel_(new Channel(this, wakeupFd_))
 {
-    std::cout<<"here~~~"<<endl;
+    std::cout<<"here~~~"<<std::endl;
     if(t_threadInThisLoop){
         LOG_FATAL("Another EventLoop %p exists in this thread %d\n", t_threadInThisLoop, threadId_);
     }else{
