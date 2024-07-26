@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(example)
 
 message(STATUS "Source files: ${CMAKE_SOURCE_DIR}")
@@ -8,7 +8,11 @@ file(GLOB EXAMPLE_SRC ${CMAKE_SOURCE_DIR}/example/*.cpp)
 
 message(STATUS "Example source files: ${EXAMPLE_SRC}")
 
+
+target_link_libraries(ExampleExecutable PRIVATE pkg)
+
 add_executable(ExampleExecutable ${EXAMPLE_SRC})
 
-# 将静态库链接到可执行文件
-target_link_libraries(ExampleExecutable PRIVATE pkg)
+set_target_properties(ExampleExecutable PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/target
+)
