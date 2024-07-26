@@ -55,8 +55,9 @@ private:
 };
 
 int main(){
+    std::cout<<"server start with port 8003"<<std::endl;
     EventLoop loop;
-    InetAddress addr(8002);
+    InetAddress addr(8003);
     EchoServer server(&loop, addr, "EchoServer");
     server.start();
     loop.loop();
