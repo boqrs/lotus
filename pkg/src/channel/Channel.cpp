@@ -15,12 +15,12 @@ const int Channel::kWriteEvent = EPOLLOUT;
 
 
 Channel::Channel(EventLoop *loop, int fd)
-:loop_(loop),
-fd_(fd),
-index_(invalidChannelIndex),
-events_(0),
-revents_(0),
-tied_(false){};
+:loop_(loop)
+,fd_(fd)
+,index_(invalidChannelIndex),
+events_(0)
+,revents_(0)
+,tied_(false){};
 
 Channel::~Channel(){};
 

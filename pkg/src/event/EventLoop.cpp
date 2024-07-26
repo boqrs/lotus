@@ -34,18 +34,15 @@ poller_(Poller::newDefaultPoller(this)),
 wakeupFd_(createEventFd()),
 wakeupChannel_(new Channel(this, wakeupFd_))
 {
-    std::cout<<"here~~~"<<std::endl;
     if(t_threadInThisLoop){
         LOG_FATAL("Another EventLoop %p exists in this thread %d\n", t_threadInThisLoop, threadId_);
     }else{
         t_threadInThisLoop = this;
     }
 
-    wakeupChannel_->setReadCallback(
-            std::bind(&EventLoop::handleRead, this));
+    wakeupChannel_->setReadCallback(std::bind(&EventLoop::handleRead, this));
     wakeupChannel_->enableReading();
-    std::cout<<"finish here~~~"<<std::endl;
-};
+}
 
 EventLoop::~EventLoop() {
     wakeupChannel_->disableAll();
@@ -69,7 +66,7 @@ void EventLoop::loop() {
     };
     LOG_INFO("EventLoop %p stop looping.\n", this);
     looping_ = false;
-};
+}
 
 void EventLoop::quit() {
     quit_ = true;
@@ -77,7 +74,7 @@ void EventLoop::quit() {
     if(!isInLoopThread()){ //TODO: 任意一个非本线程的线程都需要负责唤醒loop线程
         wakeup();
     }
-};
+}
 
 void EventLoop::runInLoop(EventLoop::Functor cb) {
     if(isInLoopThread()){
